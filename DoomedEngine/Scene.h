@@ -18,8 +18,8 @@ struct PerspectiveCamera : public Transformable{
 
 public:
 
-	mat4 GetModelViewMatrix();
-	mat4 GetProjectionMatrix();
+	glm::mat4 GetModelViewMatrix();
+	glm::mat4 GetProjectionMatrix();
 	PerspectiveCamera();
 	PerspectiveCamera(GLfloat _fovy, GLfloat _aspect, GLfloat _zNear, GLfloat _zFar);
 };
@@ -33,7 +33,7 @@ class Scene{
 	GLint worldObjectCount;
 	GLint lightSourceCount;
 
-	vec4 ambientLight;
+	glm::vec4 ambientLight;
 	
 	PerspectiveCamera mainCamera;
 	

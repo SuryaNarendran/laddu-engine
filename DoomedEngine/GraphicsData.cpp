@@ -76,9 +76,9 @@ void GraphicsData::InitShaders(const char* vShaderFile, const char* fShaderFile)
 }
 
 void GraphicsData::InitMaterials() {
-	Material defaultMaterial(vec4(1.0f, 0.0f, 0.0f, 1.0f),
-		vec4(1.0f, 1.0f, 1.0f, 1.0f),
-		vec4(1.0f, 1.0f, 1.0f, 1.0f),
+	Material defaultMaterial(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f),
+		glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+		glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
 		shaders[SHADER_DEFAULT]);
 
 	materials = new Material[1];

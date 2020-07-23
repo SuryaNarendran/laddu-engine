@@ -18,12 +18,12 @@ int main(int argc, char* argv[])
 	if (GLEW_OK != err)
 	{
 		/* Problem: glewInit failed, something is seriously wrong. */
-		cout << "glewInit failed, aborting." << endl;
+		std::cout << "glewInit failed, aborting." << std::endl;
 		exit(1);
 	}
-	cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << endl;
-	cout << "OpenGL version " << glGetString(GL_VERSION) << " supported" << endl;
-	cout << "OpenGL vendor: " << glGetString(GL_VENDOR) << endl;
+	std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
+	std::cout << "OpenGL version " << glGetString(GL_VERSION) << " supported" << std::endl;
+	std::cout << "OpenGL vendor: " << glGetString(GL_VENDOR) << std::endl;
 
 	MainLoop::init();
 	glutDisplayFunc(MainLoop::display);

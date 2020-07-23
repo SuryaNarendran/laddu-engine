@@ -8,13 +8,13 @@ void Scene::LoadNew(const char* filename) {
 
 	mainCamera = PerspectiveCamera(45.0, (GLfloat)WINDOW_WIDTH / WINDOW_HEIGHT, 0.5f, 30.0f);
 
-	mainCamera.position = vec4(0, 0, -5, 1);
-	mainCamera.eulerAngles = vec3(0, 0, 0);
+	mainCamera.position = glm::vec4(0, 0, -5, 1);
+	mainCamera.eulerAngles = glm::vec3(0, 0, 0);
 
 	lightSources = new PointLight();
 	lightSourceCount = 1;
 
-	ambientLight = vec4(0.50, 0.0, 0.0, 1.0);
+	ambientLight = glm::vec4(0.50, 0.0, 0.0, 1.0);
 
 	worldObjectCount = 1;
 	worldObjects = new WorldObject[worldObjectCount];
@@ -23,12 +23,12 @@ void Scene::LoadNew(const char* filename) {
 }
 
 //Taken from mat.h -> Angel Interactive Computer Graphics
-mat4 PerspectiveCamera::GetProjectionMatrix()
+glm::mat4 PerspectiveCamera::GetProjectionMatrix()
 {
 	/*GLfloat top = tan(fovy*DEG_TO_RAD / 2) * zNear;
 	GLfloat right = top * aspect;
 
-	mat4 c(1.0f);
+	glm::mat4 c(1.0f);
 	c[0][0] = zNear / right;
 	c[1][1] = zNear / top;
 	c[2][2] = -(zFar + zNear) / (zFar - zNear);
@@ -36,29 +36,29 @@ mat4 PerspectiveCamera::GetProjectionMatrix()
 	c[3][2] = -1.0;
 	return c;*/
 
-	return perspective(fovy, aspect, zNear, zFar);
+	return glm::perspective(fovy, aspect, zNear, zFar);
 }
 
 //Taken from mat.h -> Angel Interactive Computer Graphics
-mat4 PerspectiveCamera::GetModelViewMatrix()
+glm::mat4 PerspectiveCamera::GetModelViewMatrix()
 {
-	vec4 eye = position;
-	vec4 forward = vec4(0, 0, 1,0);
-	vec4 up(0, 1, 0, 0);
+	glm::vec4 eye = position;
+	glm::vec4 forward = glm::vec4(0, 0, 1,0);
+	glm::vec4 up(0, 1, 0, 0);
 
-	mat4 rotationMatrix(1.0f);
-	rotationMatrix = rotate(rotationMatrix, eulerAngles[2], vec3(0, 0, 1));
-	rotationMatrix = rotate(rotationMatrix, eulerAngles[1], vec3(0, 1, 0));
-	rotationMatrix = rotate(rotationMatrix, eulerAngles[0], vec3(1, 0, 0));
+	glm::mat4 rotationMatrix(1.0f);
+	rotationMatrix = rotate(rotationMatrix, eulerAngles[2], glm::vec3(0, 0, 1));
+	rotationMatrix = rotate(rotationMatrix, eulerAngles[1], glm::vec3(0, 1, 0));
+	rotationMatrix = rotate(rotationMatrix, eulerAngles[0], glm::vec3(1, 0, 0));
 
 	forward = rotationMatrix*forward;
 	up = rotationMatrix*up;
 
-	vec3 eye3(eye.x, eye.y, eye.z);
-	vec3 forward3(forward.x, forward.y, forward.z);
-	vec3 up3(up.x, up.y, up.z);
+	glm::vec3 eye3(eye.x, eye.y, eye.z);
+	glm::vec3 forward3(forward.x, forward.y, forward.z);
+	glm::vec3 up3(up.x, up.y, up.z);
 
-	return lookAt(eye3, eye3 + forward3, up3);
+	return glm::lookAt(eye3, eye3 + forward3, up3);
 }
 
 PerspectiveCamera::PerspectiveCamera() : Transformable(){}

@@ -33,12 +33,12 @@ void MainLoop::display() {
 	//setup uniform variables
 	Shader defaultShader = GraphicsData::GetShader(SHADER_DEFAULT);
 
-	mat4 pMatrix = activeScene.mainCamera.GetProjectionMatrix();
-	float* p = value_ptr(pMatrix);
+	glm::mat4 pMatrix = activeScene.mainCamera.GetProjectionMatrix();
+	float* p = glm::value_ptr(pMatrix);
 	glUniformMatrix4fv(defaultShader.projectionID, 1, GL_FALSE, p);
 
-	mat4 mvMatrix = activeScene.mainCamera.GetModelViewMatrix();
-	float* mv = value_ptr(mvMatrix);
+	glm::mat4 mvMatrix = activeScene.mainCamera.GetModelViewMatrix();
+	float* mv = glm::value_ptr(mvMatrix);
 	glUniformMatrix4fv(defaultShader.modelViewID, 1, GL_FALSE, mv);
 
 	//draw elements

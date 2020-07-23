@@ -5,13 +5,13 @@
 class Transformable{
 
 public:
-	vec4 position;
-	vec3 eulerAngles;
-	vec4 scale;
+	glm::vec4 position;
+	glm::vec3 eulerAngles;
+	glm::vec4 scale;
 
 public:
 
-	mat4 GetTransformMatrix();
+	glm::mat4 GetTransformMatrix();
 	void Translate(GLfloat x, GLfloat y, GLfloat z);
 	void Rotate(GLfloat xAxis, GLfloat yAxis, GLfloat zAxis);
 	void Scale(GLfloat x, GLfloat y, GLfloat z);

@@ -42,7 +42,7 @@ class ElemBuffPrimitive3D : public WorldObject {
 
 public:
 	ElemBuffPrimitive3D(Model model);
-	vec4 color;
+	glm::vec4 color;
 
 public:
 	void Draw() override;

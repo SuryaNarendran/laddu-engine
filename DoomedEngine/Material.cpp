@@ -1,7 +1,7 @@
 #include "Material.h"
 #include "GraphicsData.h"
 
-Material::Material(vec4 _ambientProperties, vec4 _diffuseProperties, vec4 _specularProperties, const Shader &_shader)
+Material::Material(glm::vec4 _ambientProperties, glm::vec4 _diffuseProperties, glm::vec4 _specularProperties, const Shader &_shader)
 	: shader(_shader){
 	ambientProperties = _ambientProperties;
 	diffuseProperties = _diffuseProperties;
