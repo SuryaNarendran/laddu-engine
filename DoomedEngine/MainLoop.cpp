@@ -52,4 +52,25 @@ void MainLoop::display() {
 	glFlush();
 }
 
+void MainLoop::kbhandle(unsigned char inputchar, int mouseX, int mouseY) {
+	switch (inputchar) {
+	case 'w':
+	case 'W':
+
+		break;
+	case 'a':
+	case 'A':
+
+		break;
+	case 's':
+	case 'S':
+
+		break;
+	case 'd':
+	case 'D':
+
+		break;
+	}
+}
+
 Scene MainLoop::activeScene;

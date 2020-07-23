@@ -11,10 +11,9 @@ public:
 
 public:
 
-	//mat4 GetTransformMatrix();
-	Transformable() {
-		position = vec4(0, 0, 0, 1);
-		eulerAngles = vec3(0, 0, 0);
-		scale = vec4(1, 1, 1, 0);
-	}
+	mat4 GetTransformMatrix();
+	void Translate(GLfloat x, GLfloat y, GLfloat z);
+	void Rotate(GLfloat xAxis, GLfloat yAxis, GLfloat zAxis);
+	void Scale(GLfloat x, GLfloat y, GLfloat z);
+	Transformable();
 };

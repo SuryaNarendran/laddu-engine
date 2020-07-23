@@ -15,6 +15,8 @@ public:
 
 	static void display(void);
 
+	static void kbhandle(unsigned char testchar, int mouseX, int mouseY);
+
 private:
 
 	static Scene activeScene;
