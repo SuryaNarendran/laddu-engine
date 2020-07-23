@@ -53,24 +53,33 @@ void MainLoop::display() {
 }
 
 void MainLoop::kbhandle(unsigned char inputchar, int mouseX, int mouseY) {
+
+	int xDelta = 0, zDelta = 0;
+
 	switch (inputchar) {
 	case 'w':
 	case 'W':
-
-		break;
-	case 'a':
-	case 'A':
-
+		zDelta = 1;
 		break;
 	case 's':
 	case 'S':
-
+		zDelta = -1;
+		break;
+	}
+	switch (inputchar){
+	case 'a':
+	case 'A':
+		xDelta = 1;
 		break;
 	case 'd':
 	case 'D':
-
+		xDelta = -1;
 		break;
 	}
+
+	float speed = PLAYER_SPEED / FRAMERATE;
+	activeScene.mainCamera.Translate(xDelta*speed, 0, zDelta*speed);
+	glutPostRedisplay();
 }
 
 Scene MainLoop::activeScene;

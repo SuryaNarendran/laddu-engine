@@ -18,3 +18,15 @@ glm::mat4 Transformable::GetTransformMatrix() {
 
 	return retval;
 }
+
+void Transformable::Translate(GLfloat x, GLfloat y, GLfloat z) {
+	position += glm::vec4(x, y, z, 0);
+}
+
+void Transformable::Rotate(GLfloat xAxis, GLfloat yAxis, GLfloat zAxis) {
+	eulerAngles += glm::vec3(xAxis, yAxis, zAxis);
+}
+
+void Transformable::Scale(GLfloat x, GLfloat y, GLfloat z) {
+	scale += glm::vec4(x, y, z,0);
+}
