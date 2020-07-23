@@ -76,9 +76,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\freeglut-MSVC-3.0.0-2.mp\freeglut\lib;$(SolutionDir)lib\glew-2.1.0-win32\glew-2.1.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,6 +126,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CubeData.h" />
+    <ClInclude Include="DOOM.h" />
+    <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="GraphicsData.h" />
+    <ClInclude Include="LightSource.h" />
+    <ClInclude Include="MainLoop.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Transformable.h" />
+    <ClInclude Include="WorldObject.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CubeData.cpp" />
+    <ClCompile Include="DOOM_Helpers.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="GraphicsData.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainLoop.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="WorldObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="std_fshader.glsl" />
+    <None Include="std_vshader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
