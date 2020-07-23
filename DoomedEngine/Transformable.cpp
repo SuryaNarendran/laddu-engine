@@ -30,3 +30,15 @@ void Transformable::Rotate(GLfloat xAxis, GLfloat yAxis, GLfloat zAxis) {
 void Transformable::Scale(GLfloat x, GLfloat y, GLfloat z) {
 	scale += glm::vec4(x, y, z,0);
 }
+
+void Transformable::Translate(glm::vec3 values) {
+	position += glm::vec4(values,0.0f);
+}
+
+void Transformable::Rotate(glm::vec3 values) {
+	eulerAngles += values;
+}
+
+void Transformable::Scale(glm::vec3 values) {
+	scale += glm::vec4(values, 0.0f);
+}

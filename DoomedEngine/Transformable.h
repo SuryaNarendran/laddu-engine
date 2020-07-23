@@ -15,5 +15,8 @@ public:
 	void Translate(GLfloat x, GLfloat y, GLfloat z);
 	void Rotate(GLfloat xAxis, GLfloat yAxis, GLfloat zAxis);
 	void Scale(GLfloat x, GLfloat y, GLfloat z);
+	void Translate(glm::vec3 values);
+	void Rotate(glm::vec3 values);
+	void Scale(glm::vec3 values);
 	Transformable();
 };

@@ -33,9 +33,6 @@
 #define WINDOW_HEIGHT 500
 #define WINDOW_WIDTH 800
 
-#define PLAYER_SPEED 2.0f
-#define FRAMERATE 60.0f
-
 // Define a helpful macro for handling offsets into buffer objects
 #define BUFFER_OFFSET( offset )   ((GLvoid*) (offset))
 

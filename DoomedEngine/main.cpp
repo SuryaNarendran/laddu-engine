@@ -29,6 +29,8 @@ int main(int argc, char* argv[])
 	glutDisplayFunc(MainLoop::display);
 	glutReshapeFunc(MainLoop::reshape);
 	glutKeyboardFunc(MainLoop::kbhandle);
+	glutIdleFunc(MainLoop::update);
+	glutPassiveMotionFunc(MainLoop::passiveMouse);
 
 	glutMainLoop();
 	return 0;

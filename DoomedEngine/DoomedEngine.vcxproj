@@ -133,6 +133,7 @@
     <ClInclude Include="LightSource.h" />
     <ClInclude Include="MainLoop.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Transformable.h" />
@@ -147,6 +148,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainLoop.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Transformable.cpp" />

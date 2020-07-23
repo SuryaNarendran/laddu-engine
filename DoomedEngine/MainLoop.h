@@ -5,6 +5,7 @@
 #include "Transformable.h"
 #include "Scene.h"
 #include "GraphicsData.h"
+#include "PlayerInput.h"
 
 class MainLoop {
 public:
@@ -16,6 +17,10 @@ public:
 	static void display(void);
 
 	static void kbhandle(unsigned char testchar, int mouseX, int mouseY);
+
+	static void passiveMouse(int mouseX, int mouseY);
+
+	static void update();
 
 private:
 

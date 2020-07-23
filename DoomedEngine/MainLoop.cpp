@@ -3,7 +3,8 @@
 void MainLoop::init() {
 
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-	//glutSetCursor(GLUT_CURSOR_NONE);
+	glutSetCursor(GLUT_CURSOR_NONE);
+	glutWarpPointer(WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT / 2.0f);
 
 	// Load shaders and use the resulting shader program
 	GraphicsData::InitShaders("std_vshader.glsl", "std_fshader.glsl");
@@ -19,6 +20,8 @@ void MainLoop::init() {
 
 	activeScene = Scene();
 	activeScene.LoadNew("someNonsense.doom");
+
+	PlayerInput::Init();
 }
 
 void MainLoop::reshape(int w, int h){
@@ -54,31 +57,85 @@ void MainLoop::display() {
 
 void MainLoop::kbhandle(unsigned char inputchar, int mouseX, int mouseY) {
 
-	int xDelta = 0, zDelta = 0;
-
 	switch (inputchar) {
 	case 'w':
 	case 'W':
-		zDelta = 1;
+		PlayerInput::zAxis = 1;
 		break;
 	case 's':
 	case 'S':
-		zDelta = -1;
+		PlayerInput::zAxis = -1;
 		break;
+	default:
+		PlayerInput::zAxis = 0;
 	}
 	switch (inputchar){
 	case 'a':
 	case 'A':
-		xDelta = 1;
+		PlayerInput::xAxis = 1;
 		break;
 	case 'd':
 	case 'D':
-		xDelta = -1;
+		PlayerInput::xAxis = -1;
 		break;
+	default:
+		PlayerInput::xAxis = 0;
 	}
 
-	float speed = PLAYER_SPEED / FRAMERATE;
-	activeScene.mainCamera.Translate(xDelta*speed, 0, zDelta*speed);
+	PlayerInput::axisInputDelay = 0;
+}
+
+void MainLoop::passiveMouse(int mouseX, int mouseY) {
+
+	PlayerInput::pointerDeltaX = mouseX - PlayerInput::pointerX;
+	PlayerInput::pointerDeltaY = mouseY - PlayerInput::pointerY;
+
+	if (mouseX >= WINDOW_WIDTH - PlayerInput::mouseCatchDistance || mouseX <= PlayerInput::mouseCatchDistance
+		|| mouseY >= WINDOW_HEIGHT - PlayerInput::mouseCatchDistance || mouseY <= PlayerInput::mouseCatchDistance) {
+		glutWarpPointer(WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT / 2.0f);
+		PlayerInput::pointerX = WINDOW_WIDTH / 2.0f;
+		PlayerInput::pointerY = WINDOW_HEIGHT / 2.0f;
+	}
+	else {
+		PlayerInput::pointerX = mouseX;
+		PlayerInput::pointerY = mouseY;
+	}
+	PlayerInput::angXCoveredSinceLastPtrInput = 0;
+	PlayerInput::angYCoveredSinceLastPtrInput = 0;
+}
+
+void MainLoop::update() {
+
+	int newTime = glutGet(GLUT_ELAPSED_TIME);
+	int deltaTime = newTime - PlayerInput::time;
+	PlayerInput::time = newTime;
+
+	//negative because +x in screen coordinates corresponds to a clockwise rotation
+	float deltaTheta = -PlayerInput::pointerDeltaX * PlayerInput::mouseSensitivity - PlayerInput::angYCoveredSinceLastPtrInput;
+	float deltaPhi = PlayerInput::pointerDeltaY * PlayerInput::mouseSensitivity - PlayerInput::angXCoveredSinceLastPtrInput;
+	float xAxisRot = std::fmin(deltaPhi, PlayerInput::mouseSpeed*deltaTime/1000.0f);
+	float yAxisRot = std::fmin(deltaTheta, PlayerInput::mouseSpeed*deltaTime/1000.0f);
+	activeScene.mainCamera.Rotate(xAxisRot, yAxisRot, 0);
+	PlayerInput::angXCoveredSinceLastPtrInput += xAxisRot;
+	PlayerInput::angYCoveredSinceLastPtrInput += yAxisRot;
+
+	float movementSpeed = PlayerInput::playerSpeed * deltaTime / 1000.0f;
+	glm::mat4 playerRotation = glm::rotate(glm::mat4(1.0f),
+		activeScene.mainCamera.eulerAngles.y,
+		glm::vec3(0, 1, 0));
+	glm::vec3 playerXAxis = glm::vec4(1, 0, 0, 0)*playerRotation;
+	glm::vec3 playerZAxis = glm::vec4(0, 0, 1, 0)*playerRotation;
+	activeScene.mainCamera.Translate(
+		PlayerInput::xAxis*movementSpeed*playerXAxis + 
+		PlayerInput::zAxis*movementSpeed*playerZAxis);
+
+	PlayerInput::axisInputDelay += deltaTime;
+	if (PlayerInput::axisInputDelay > PlayerInput::axisInputReleaseTime) {
+		PlayerInput::xAxis = 0;
+		PlayerInput::zAxis = 0;
+		PlayerInput::axisInputDelay = 0;
+	}
+
 	glutPostRedisplay();
 }
 
