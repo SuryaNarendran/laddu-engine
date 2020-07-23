@@ -68,21 +68,18 @@ void GraphicsData::InitShaders(const char* vShaderFile, const char* fShaderFile)
 	}
 
 	shaders = new Shader[1];
-	Shader defaultShader = Shader();
-	defaultShader.programID = program;
-
-	defaultShader.modelViewID = glGetUniformLocation(program, "model_view");
-	defaultShader.projectionID = glGetUniformLocation(program, "projection");
+	Shader defaultShader = Shader(program,
+		glGetUniformLocation(program, "model_view"),
+		glGetUniformLocation(program, "projection"));
 
 	shaders[SHADER_DEFAULT] = defaultShader;
 }
 
 void GraphicsData::InitMaterials() {
-	Material defaultMaterial;
-	defaultMaterial.ambientProperties = vec4(1.0f, 0.0f, 0.0f, 1.0f);
-	defaultMaterial.diffuseProperties = vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	defaultMaterial.specularProperties = vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	defaultMaterial.shader = shaders[SHADER_DEFAULT];
+	Material defaultMaterial(vec4(1.0f, 0.0f, 0.0f, 1.0f),
+		vec4(1.0f, 1.0f, 1.0f, 1.0f),
+		vec4(1.0f, 1.0f, 1.0f, 1.0f),
+		shaders[SHADER_DEFAULT]);
 
 	materials = new Material[1];
 	materials[MATERIAL_DEFAULT] = defaultMaterial;

@@ -143,9 +143,12 @@
     <ClCompile Include="DOOM_Helpers.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="GraphicsData.cpp" />
+    <ClCompile Include="LightSource.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainLoop.cpp" />
+    <ClCompile Include="Material.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="WorldObject.cpp" />
   </ItemGroup>
   <ItemGroup>
