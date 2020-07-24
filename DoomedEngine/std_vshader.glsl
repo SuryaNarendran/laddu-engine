@@ -8,6 +8,7 @@ out vec3 fN, fE, fL;
 
 uniform mat4 model_view;
 uniform mat4 projection;
+uniform mat4 transform;
 vec4 LightPosition = vec4(10, 10.0, 10.0, 1.0);
 
 
@@ -19,14 +20,16 @@ void main()
 	vec4 lightPos = LightPosition; 
 	lightPos.x = cos(theta)*LightPosition.x - sin(theta)*LightPosition.z;
 	lightPos.z = sin(theta)*LightPosition.x + cos(theta)*LightPosition.z;
+
+	vec4 mvPosition = model_view*transform*vPosition;
 	
 	fN = vNormal;
-	fE = (model_view*vPosition).xyz;
+	fE = (mvPosition).xyz;
 	fL = lightPos.xyz;
 
 	if(LightPosition.w != 0.0){
 		fL = lightPos.xyz - vPosition.xyz;
 	}
 
-	gl_Position = projection*model_view*vPosition;
+	gl_Position = projection*mvPosition;
 }

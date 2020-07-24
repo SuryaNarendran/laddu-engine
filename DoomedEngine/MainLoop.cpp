@@ -18,8 +18,6 @@ void MainLoop::init() {
 	// Z-buffer based depth algorithm is enabled
 	glEnable(GL_DEPTH_TEST);
 
-	/*activeScene = Scene();
-	activeScene.LoadNew("someNonsense.doom");*/
 
 	activeScene = SceneLoader::LoadNew("testLevel.doom");
 

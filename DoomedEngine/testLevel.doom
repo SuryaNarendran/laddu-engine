@@ -5,6 +5,9 @@
 
 >"ObjectDeclarations"
 
-"worldObject"{"name":"cube1","position":(0,0,0),"model":"cube"}
+"worldObject"{"name":"cube1","position":(0,0,0),"model":"cube"},
+"worldObject"{"name":"cube2","position":(3,0,0),"model":"cube"},
+"worldObject"{"name":"cube3","position":(0,3,0),"model":"cube"},
+"worldObject"{"name":"cube4","position":(-3,0,0),"model":"cube"}
 
 >"End"

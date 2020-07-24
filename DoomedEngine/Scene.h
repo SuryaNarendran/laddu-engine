@@ -36,8 +36,6 @@ class Scene{
 	glm::vec4 ambientLight;
 	
 	PerspectiveCamera mainCamera;
-	
-	void LoadNew(const char* filename);
 };
 
 

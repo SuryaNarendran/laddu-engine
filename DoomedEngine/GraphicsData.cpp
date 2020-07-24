@@ -70,7 +70,8 @@ void GraphicsData::InitShaders(const char* vShaderFile, const char* fShaderFile)
 	shaders = new Shader[1];
 	Shader defaultShader = Shader(program,
 		glGetUniformLocation(program, "model_view"),
-		glGetUniformLocation(program, "projection"));
+		glGetUniformLocation(program, "projection"),
+		glGetUniformLocation(program, "transform"));
 
 	shaders[SHADER_DEFAULT] = defaultShader;
 }

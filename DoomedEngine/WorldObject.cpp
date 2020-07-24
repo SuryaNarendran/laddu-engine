@@ -27,6 +27,8 @@ WorldObject::WorldObject() : Transformable() {
 void WorldObject::Draw() {
 
 	//send transform uniform to shader
+	glm::mat4 tMatrix = GetTransformMatrix();
+	glUniformMatrix4fv(material.shader.transformID, 1, GL_FALSE, glm::value_ptr(tMatrix));
 
 	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, 0);

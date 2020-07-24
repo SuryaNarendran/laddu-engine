@@ -7,9 +7,9 @@ Scene SceneLoader::LoadNew(const char* filename) {
 	if (!file)
 		int y = 9;//debug
 	//initialize arrays to hold object definitions in the scene file
-	ModelTemplate* modelTemplates = new ModelTemplate[1];
+	std::vector<ModelTemplate> modelTemplates;
 	int modelTemplate_i = 0;
-	WorldObjectTemplate* worldObjectTemplates = new WorldObjectTemplate[1];
+	std::vector<WorldObjectTemplate> worldObjectTemplates;
 	int worldObjectTemplate_i = 0;
 
 	//buffer to hold strings temporarily while reading
@@ -28,24 +28,26 @@ Scene SceneLoader::LoadNew(const char* filename) {
 
 		//read model data
 		if (strcmp(stringBuffer,"model")==0) {
+			modelTemplates.push_back(ModelTemplate());
 			marker = FileHandler::getNextRelevantChar(file); // '{'
 			while (marker != '}') {
 				marker = FileHandler::readHRString(file, stringBuffer);
 				if (strcmp(stringBuffer, "name") == 0) {
 					marker = FileHandler::getNextRelevantChar(file); // ':'
 					marker = FileHandler::readHRString(file, stringBuffer);
-					CopyStringData(&modelTemplates[modelTemplate_i].name, &stringBuffer);
+					CopyStringData(&(modelTemplates[modelTemplate_i]).name, &stringBuffer);
 				}
 				else if (strcmp(stringBuffer, "filename") == 0) {
 					marker = FileHandler::getNextRelevantChar(file); // ':'
 					marker = FileHandler::readHRString(file, stringBuffer);
-					CopyStringData(&modelTemplates[modelTemplate_i].filename, &stringBuffer);
+					CopyStringData(&(modelTemplates[modelTemplate_i]).filename, &stringBuffer);
 				}//NOTE:: find a way to make sure that all fields are initialized?
 
 				marker = FileHandler::getNextRelevantChar(file); // ',' or '}'
 			}
 			modelTemplate_i++;
 		}
+		marker = FileHandler::getNextRelevantChar(file); //'{' or '>'
 	}
 
 	marker = FileHandler::readHRString(file, stringBuffer);// "ObjectDeclarations"
@@ -55,27 +57,29 @@ Scene SceneLoader::LoadNew(const char* filename) {
 
 		//read worldobject data
 		if (strcmp(stringBuffer, "worldObject") == 0) {
+			worldObjectTemplates.push_back(WorldObjectTemplate());
 			marker = FileHandler::getNextRelevantChar(file); // '{'
 			while (marker != '}') {
 				marker = FileHandler::readHRString(file, stringBuffer);
 				if (strcmp(stringBuffer, "name") == 0) {
 					marker = FileHandler::getNextRelevantChar(file); // ':'
 					marker = FileHandler::readHRString(file, stringBuffer);
-					CopyStringData(&worldObjectTemplates[worldObjectTemplate_i].name, &stringBuffer);
+					CopyStringData(&(worldObjectTemplates[worldObjectTemplate_i]).name, &stringBuffer);
 				}
 				else if (strcmp(stringBuffer, "model") == 0) {
 					marker = FileHandler::getNextRelevantChar(file); // ':'
 					marker = FileHandler::readHRString(file, stringBuffer);
-					CopyStringData(&worldObjectTemplates[worldObjectTemplate_i].model, &stringBuffer);
+					CopyStringData(&(worldObjectTemplates[worldObjectTemplate_i]).model, &stringBuffer);
 				}
 				else if (strcmp(stringBuffer, "position") == 0) {
 					marker = FileHandler::getNextRelevantChar(file); // ':'
-					marker = FileHandler::readHRVector3(file, worldObjectTemplates[worldObjectTemplate_i].position);
+					marker = FileHandler::readHRVector3(file, (worldObjectTemplates[worldObjectTemplate_i]).position);
 				}
 				marker = FileHandler::getNextRelevantChar(file); // ',' or '}'
 			}
 			worldObjectTemplate_i++;
 		}
+		marker = FileHandler::getNextRelevantChar(file); //'{' or '>'
 	}
 	// "End"
 

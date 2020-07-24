@@ -1,27 +1,6 @@
 //holds references for the objects that make up the game world, and methods to load them from file. 
 #include "Scene.h"
 
-
-void Scene::LoadNew(const char* filename) {
-
-	//char* levelFileString = FileHandler::readFileToString(filename);
-
-	mainCamera = PerspectiveCamera(45.0, (GLfloat)WINDOW_WIDTH / WINDOW_HEIGHT, 0.5f, 30.0f);
-
-	mainCamera.position = glm::vec4(0, 0, -5, 1);
-	mainCamera.eulerAngles = glm::vec3(0, 0, 0);
-
-	lightSources = new PointLight();
-	lightSourceCount = 1;
-
-	ambientLight = glm::vec4(0.50, 0.0, 0.0, 1.0);
-
-	worldObjectCount = 1;
-	worldObjects = new WorldObject[worldObjectCount];
-
-	worldObjects[0] = GraphicsData::GetDefaultCube();
-}
-
 //Taken from mat.h -> Angel Interactive Computer Graphics
 glm::mat4 PerspectiveCamera::GetProjectionMatrix()
 {
