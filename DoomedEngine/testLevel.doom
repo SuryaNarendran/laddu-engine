@@ -1,0 +1,10 @@
+#This is the start of this file
+>"Definitions"
+
+"model"{"name":"cube", "filename":"cube.obj"}
+
+>"ObjectDeclarations"
+
+"worldObject"{"name":"cube1","position":(0,0,0),"model":"cube"}
+
+>"End"

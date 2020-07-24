@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "GraphicsData.h"
 #include "PlayerInput.h"
+#include "SceneLoader.h"
 
 class MainLoop {
 public:

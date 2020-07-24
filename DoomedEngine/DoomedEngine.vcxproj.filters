@@ -51,6 +51,9 @@
     <ClInclude Include="PlayerInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SceneLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainLoop.cpp">
@@ -92,12 +95,18 @@
     <ClCompile Include="PlayerInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SceneLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="std_fshader.glsl">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="std_vshader.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="testLevel.doom">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

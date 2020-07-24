@@ -13,6 +13,7 @@ class Model{
 		GLuint* vboa;
 		GLsizei elementCount;
 		Material material;
+		const char* name;
 		
 	public:
 		Model(GLuint _vao, GLuint* _vboa, GLsizei _elementCount, Material _material);

@@ -77,6 +77,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,6 +136,7 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Transformable.h" />
     <ClInclude Include="WorldObject.h" />
@@ -150,6 +152,7 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Transformable.cpp" />
     <ClCompile Include="WorldObject.cpp" />
@@ -157,6 +160,7 @@
   <ItemGroup>
     <None Include="std_fshader.glsl" />
     <None Include="std_vshader.glsl" />
+    <None Include="testLevel.doom" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
