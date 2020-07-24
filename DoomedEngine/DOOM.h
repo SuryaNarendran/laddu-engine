@@ -32,6 +32,7 @@
 
 #define WINDOW_HEIGHT 500
 #define WINDOW_WIDTH 800
+#define FLOAT_EPSILON 0.000001f
 
 // Define a helpful macro for handling offsets into buffer objects
 #define BUFFER_OFFSET( offset )   ((GLvoid*) (offset))

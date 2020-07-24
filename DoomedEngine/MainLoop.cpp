@@ -104,30 +104,39 @@ void MainLoop::passiveMouse(int mouseX, int mouseY) {
 	PlayerInput::angYCoveredSinceLastPtrInput = 0;
 }
 
+//split into functions that handle pointer input and kb input 
 void MainLoop::update() {
 
 	int newTime = glutGet(GLUT_ELAPSED_TIME);
 	int deltaTime = newTime - PlayerInput::time;
 	PlayerInput::time = newTime;
 
-	//negative because +x in screen coordinates corresponds to a clockwise rotation
-	float deltaTheta = -PlayerInput::pointerDeltaX * PlayerInput::mouseSensitivity - PlayerInput::angYCoveredSinceLastPtrInput;
-	float deltaPhi = PlayerInput::pointerDeltaY * PlayerInput::mouseSensitivity - PlayerInput::angXCoveredSinceLastPtrInput;
-	float xAxisRot = std::fmin(deltaPhi, PlayerInput::mouseSpeed*deltaTime/1000.0f);
-	float yAxisRot = std::fmin(deltaTheta, PlayerInput::mouseSpeed*deltaTime/1000.0f);
-	activeScene.mainCamera.Rotate(xAxisRot, yAxisRot, 0);
-	PlayerInput::angXCoveredSinceLastPtrInput += xAxisRot;
-	PlayerInput::angYCoveredSinceLastPtrInput += yAxisRot;
+	if(abs(PlayerInput::pointerDeltaX) > FLOAT_EPSILON ||
+		abs(PlayerInput::pointerDeltaY) > FLOAT_EPSILON){
 
-	float movementSpeed = PlayerInput::playerSpeed * deltaTime / 1000.0f;
-	glm::mat4 playerRotation = glm::rotate(glm::mat4(1.0f),
-		activeScene.mainCamera.eulerAngles.y,
-		glm::vec3(0, 1, 0));
-	glm::vec3 playerXAxis = glm::vec4(1, 0, 0, 0)*playerRotation;
-	glm::vec3 playerZAxis = glm::vec4(0, 0, 1, 0)*playerRotation;
-	activeScene.mainCamera.Translate(
-		PlayerInput::xAxis*movementSpeed*playerXAxis + 
-		PlayerInput::zAxis*movementSpeed*playerZAxis);
+		//negative because +x in screen coordinates corresponds to a clockwise rotation
+		float deltaTheta = -PlayerInput::pointerDeltaX * PlayerInput::mouseSensitivity - PlayerInput::angYCoveredSinceLastPtrInput;
+			float deltaPhi = PlayerInput::pointerDeltaY * PlayerInput::mouseSensitivity - PlayerInput::angXCoveredSinceLastPtrInput;
+			float xAxisRot = std::fmin(deltaPhi, PlayerInput::mouseSpeed*deltaTime / 1000.0f);
+			float yAxisRot = std::fmin(deltaTheta, PlayerInput::mouseSpeed*deltaTime / 1000.0f);
+			activeScene.mainCamera.Rotate(xAxisRot, yAxisRot, 0);
+			PlayerInput::angXCoveredSinceLastPtrInput += xAxisRot;
+			PlayerInput::angYCoveredSinceLastPtrInput += yAxisRot;
+	}
+	if (abs(PlayerInput::xAxis) > FLOAT_EPSILON ||
+		abs(PlayerInput::zAxis) > FLOAT_EPSILON) {
+
+		float movementSpeed = PlayerInput::playerSpeed * deltaTime / 1000.0f;
+
+		glm::mat4 playerRotation = glm::rotate(glm::mat4(1.0f),
+			activeScene.mainCamera.eulerAngles.y,
+			glm::vec3(0, 1, 0));
+		glm::vec3 playerXAxis = playerRotation*glm::vec4(1,0,0,0);
+		glm::vec3 playerZAxis = playerRotation*glm::vec4(0, 0, 1, 0);
+		activeScene.mainCamera.Translate(
+			PlayerInput::xAxis*movementSpeed*playerXAxis +
+			PlayerInput::zAxis*movementSpeed*playerZAxis);
+	}
 
 	PlayerInput::axisInputDelay += deltaTime;
 	if (PlayerInput::axisInputDelay > PlayerInput::axisInputReleaseTime) {
