@@ -17,6 +17,8 @@ public:
 	char* name;
 	char* model;
 	glm::vec3 position;
+	glm::vec3 eulerAngles;
+	glm::vec3 scale;
 };
 
 class SceneLoader {

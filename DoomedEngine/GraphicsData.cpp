@@ -99,15 +99,15 @@ void GraphicsData::LoadModels() {
 
 	//Create and initialize a vertex position buffer object
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GL_FLOAT)*CubeData::cubevertexCount*4, CubeData::cubevertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GL_FLOAT)*CubeData::vertexCount*4, CubeData::vertices, GL_STATIC_DRAW);
 
 	// Create and initialize a element buffer object
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GL_UNSIGNED_INT)*CubeData::cubeelementCount, CubeData::cubeelements, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GL_UNSIGNED_INT)*CubeData::elementCount, CubeData::elements, GL_STATIC_DRAW);
 
 	// Create and initialize a normal buffer object
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GL_FLOAT)*CubeData::cubevertexCount*4, CubeData::cubenormals, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GL_FLOAT)*CubeData::vertexCount*4, CubeData::normals, GL_STATIC_DRAW);
 
 	// Initialize the normal position attribute from the vertex shader
 	GLuint nor = glGetAttribLocation(shaders[SHADER_DEFAULT].programID, "vNormal");
@@ -120,7 +120,7 @@ void GraphicsData::LoadModels() {
 	glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 
 	models = new Model[1];
-	models[MODEL_CUBE] = Model(vao, buffers, CubeData::cubeelementCount, materials[0]);
+	models[MODEL_CUBE] = Model(vao, buffers, CubeData::elementCount, materials[0]);
 }
 
 WorldObject GraphicsData::GetDefaultCube() {

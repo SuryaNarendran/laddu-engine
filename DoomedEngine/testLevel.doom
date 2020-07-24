@@ -5,9 +5,9 @@
 
 >"ObjectDeclarations"
 
-"worldObject"{"name":"cube1","position":(0,0,0),"model":"cube"},
-"worldObject"{"name":"cube2","position":(3,0,0),"model":"cube"},
-"worldObject"{"name":"cube3","position":(0,3,0),"model":"cube"},
-"worldObject"{"name":"cube4","position":(-3,0,0),"model":"cube"}
+"worldObject"{"name":"floor","position":(0,-2,0),"model":"cube","scale":(20,1,20),"eulerAngles":(0,0,0)},
+"worldObject"{"name":"leftWall","position":(-10,0,0),"model":"cube","scale":(20,1,20),"eulerAngles":(0,0,90)},
+"worldObject"{"name":"leftWall","position":(10,0,0),"model":"cube","scale":(20,1,20),"eulerAngles":(0,0,90)},
+"worldObject"{"name":"backWall","position":(0,0,-10),"model":"cube","scale":(20,1,20),"eulerAngles":(90,0,0)}
 
 >"End"

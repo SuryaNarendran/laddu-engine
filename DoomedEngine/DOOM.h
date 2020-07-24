@@ -28,8 +28,8 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
-#define RAD_TO_DEG 57.295779
-#define DEG_TO_RAD 0.01745 //make more precise?
+#define RAD_TO_DEG 57.295779f
+#define DEG_TO_RAD 0.01745f //make more precise?
 
 #define WINDOW_HEIGHT 500
 #define WINDOW_WIDTH 800

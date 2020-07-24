@@ -1,6 +1,6 @@
 #include "CubeData.h"
 
-float CubeData::cubevertices[] = {
+float CubeData::vertices[] = {
 	0.5, 0.5, 0.5,
 	0.5, -0.5, 0.5,
 	-0.5, -0.5, 0.5,
@@ -10,9 +10,9 @@ float CubeData::cubevertices[] = {
 	-0.5, -0.5, -0.5,
 	-0.5, 0.5, -0.5 };
 
-int CubeData::cubevertexCount = 8;
+int CubeData::vertexCount = 8;
 
-float CubeData::cubenormals[] = {
+float CubeData::normals[] = {
 0.333333, 0.333333, 0.333333,
 0.333333, -0.333333, 0.333333,
 -0.333333, -0.333333, 0.333333,
@@ -23,7 +23,7 @@ float CubeData::cubenormals[] = {
 -0.333333, 0.333333, -0.333333,
 };
 
-unsigned int CubeData::cubeelements[] = {
+unsigned int CubeData::elements[] = {
 	0, 1, 2,
 	0, 2, 3,
 	7, 6, 5,
@@ -38,4 +38,4 @@ unsigned int CubeData::cubeelements[] = {
 	6, 1, 5
 };
 
-unsigned int CubeData::cubeelementCount = 36;
+unsigned int CubeData::elementCount = 36;

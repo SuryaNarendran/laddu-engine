@@ -75,6 +75,14 @@ Scene SceneLoader::LoadNew(const char* filename) {
 					marker = FileHandler::getNextRelevantChar(file); // ':'
 					marker = FileHandler::readHRVector3(file, (worldObjectTemplates[worldObjectTemplate_i]).position);
 				}
+				else if (strcmp(stringBuffer, "scale") == 0) {
+					marker = FileHandler::getNextRelevantChar(file); // ':'
+					marker = FileHandler::readHRVector3(file, (worldObjectTemplates[worldObjectTemplate_i]).scale);
+				}
+				else if (strcmp(stringBuffer, "eulerAngles") == 0) {
+					marker = FileHandler::getNextRelevantChar(file); // ':'
+					marker = FileHandler::readHRVector3(file, (worldObjectTemplates[worldObjectTemplate_i]).eulerAngles);
+				}
 				marker = FileHandler::getNextRelevantChar(file); // ',' or '}'
 			}
 			worldObjectTemplate_i++;
@@ -102,6 +110,8 @@ Scene SceneLoader::LoadNew(const char* filename) {
 		newScene.worldObjects[i] = GraphicsData::GetDefaultCube();
 		newScene.worldObjects[i].name = worldObjectTemplates[i].name;
 		newScene.worldObjects[i].position = glm::vec4(worldObjectTemplates[i].position, 1.0f);
+		newScene.worldObjects[i].scale = glm::vec4(worldObjectTemplates[i].scale, 1.0f);
+		newScene.worldObjects[i].eulerAngles = glm::vec4(worldObjectTemplates[i].eulerAngles*DEG_TO_RAD, 1.0f);
 	}
 
 	return newScene;

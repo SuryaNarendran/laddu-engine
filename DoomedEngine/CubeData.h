@@ -4,13 +4,13 @@
 class CubeData {
 public:
 
-	static float cubevertices[];
+	static float vertices[];
 
-	static int cubevertexCount;
+	static int vertexCount;
 
-	static float cubenormals[];
+	static float normals[];
 
-	static unsigned int cubeelements[];
+	static unsigned int elements[];
 
-	static unsigned int cubeelementCount;
+	static unsigned int elementCount;
 };
