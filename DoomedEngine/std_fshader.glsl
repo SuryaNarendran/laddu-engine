@@ -4,9 +4,9 @@ in vec3 fN, fE, fL;
 
 out vec4  fColor;
 
-vec4 AmbientProduct = vec4(0.50, 0.0, 0.0, 1.0);
-vec4 DiffuseProduct = vec4(0.50, 0.50, 0.0, 1.0);
-vec4 SpecularProduct = vec4(0.5,0.5,0.75,1.0);
+vec4 AmbientProduct = vec4(0.25, 0.10, 0.40, 1.0);
+vec4 DiffuseProduct = vec4(0.50, 0.0, 0.50, 1.0);
+vec4 SpecularProduct = vec4(0.5,0.2,0.5,1.0);
 
 float Shininess = 1;
 

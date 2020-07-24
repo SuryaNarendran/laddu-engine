@@ -94,7 +94,7 @@ Scene SceneLoader::LoadNew(const char* filename) {
 	Scene newScene;
 	newScene.mainCamera = PerspectiveCamera(45.0, (GLfloat)WINDOW_WIDTH / WINDOW_HEIGHT, 0.5f, 30.0f);
 
-	newScene.mainCamera.position = glm::vec4(0, 0, -5, 1);
+	newScene.mainCamera.position = glm::vec4(0, 0, -1, 1);
 	newScene.mainCamera.eulerAngles = glm::vec3(0, 0, 0);
 
 	newScene.lightSources = new PointLight();
