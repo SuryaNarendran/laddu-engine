@@ -9,3 +9,9 @@ Material::Material(glm::vec4 _ambientProperties, glm::vec4 _diffuseProperties, g
 }
 
 Material::Material() : shader(GraphicsData::GetShader(SHADER_DEFAULT)){}
+
+void Material::TintWithColor(glm::vec4 color) {
+	ambientProperties = ambientProperties * color;
+	diffuseProperties = diffuseProperties * color;
+	specularProperties = specularProperties * color;
+}

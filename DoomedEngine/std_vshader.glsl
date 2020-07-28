@@ -9,7 +9,7 @@ out vec3 fN, fE, fL;
 uniform mat4 model_view;
 uniform mat4 projection;
 uniform mat4 transform;
-vec4 LightPosition = vec4(10, 10.0, 10.0, 1.0);
+uniform vec4 lightPosition;
 
 
 
@@ -17,7 +17,7 @@ void main()
 {
 
 	float theta = 45 * 0.0174533;//degree to radians
-	vec4 lightPos = LightPosition; 
+	vec4 lightPos = lightPosition; 
 	lightPos.x = cos(theta)*LightPosition.x - sin(theta)*LightPosition.z;
 	lightPos.z = sin(theta)*LightPosition.x + cos(theta)*LightPosition.z;
 

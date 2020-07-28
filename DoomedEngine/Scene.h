@@ -29,7 +29,7 @@ class Scene{
 	public:
 	
 	WorldObject* worldObjects;
-	LightSource* lightSources;
+	PointLight* lightSources;
 	GLint worldObjectCount;
 	GLint lightSourceCount;
 

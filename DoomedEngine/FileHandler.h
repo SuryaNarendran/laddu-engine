@@ -17,6 +17,8 @@ public:
 
 	static char readHRVector3(std::fstream &file, glm::vec3 &vector);
 
+	static char readHRVector4(std::fstream &file, glm::vec4 &vector);
+
 	static char readHRString(std::fstream &file, char* str);
 
 private:

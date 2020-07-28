@@ -141,6 +141,14 @@ char FileHandler::readHRVector3(std::fstream &file, glm::vec3 &vector) {
 	return readHRFloat(file, vector.z); //returns the last encountered character
 }
 
+char FileHandler::readHRVector4(std::fstream &file, glm::vec4 &vector) {
+	getNextRelevantChar(file); //'('
+	readHRFloat(file, vector.x);
+	readHRFloat(file, vector.y);
+	readHRFloat(file, vector.z);
+	return readHRFloat(file, vector.w); //returns the last encountered character
+}
+
 char FileHandler::readHRString(std::fstream &file, char* str) {
 	char charBuffer = getNextRelevantChar(file);
 	if (charBuffer == '\"') {

@@ -11,7 +11,7 @@ class LightSource {
 		LightSource(glm::vec4 _diffuse, glm::vec4 _specular);
 };
 
-class PointLight : public LightSource, Transformable {
+class PointLight : public LightSource, public Transformable {
 public:
 
 	PointLight();

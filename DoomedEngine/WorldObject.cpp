@@ -24,11 +24,19 @@ WorldObject::WorldObject() : Transformable() {
 }
 
 
-void WorldObject::Draw() {
+void WorldObject::Draw(const Scene& scene) {
 
-	//send transform uniform to shader
+	//send uniforms to shader
 	glm::mat4 tMatrix = GetTransformMatrix();
 	glUniformMatrix4fv(material.shader.transformID, 1, GL_FALSE, glm::value_ptr(tMatrix));
+
+	glm::vec4 ambientProduct = scene.ambientLight * material.ambientProperties;
+	glm::vec4 diffuseProduct = scene.lightSources[0].diffuse * material.diffuseProperties;
+	glm::vec4 specularProduct = scene.lightSources[0].specular * material.specularProperties;
+
+	glUniform4fv(material.shader.ambientProductID, 1, value_ptr(ambientProduct));
+	glUniform4fv(material.shader.diffuseProductID, 1, value_ptr(diffuseProduct));
+	glUniform4fv(material.shader.specularProductID, 1, value_ptr(specularProduct));
 
 	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, 0);

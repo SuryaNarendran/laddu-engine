@@ -44,12 +44,15 @@ void MainLoop::display() {
 	float* mv = glm::value_ptr(mvMatrix);
 	glUniformMatrix4fv(defaultShader.modelViewID, 1, GL_FALSE, mv);
 
+	float* lp = glm::value_ptr(activeScene.lightSources[0].position);
+	glUniform4fv(defaultShader.lightPositionID, 1, lp);
+
 	//draw elements
 
 	for (int i = 0;i < activeScene.worldObjectCount;i++) {
 		WorldObject worldObject = activeScene.worldObjects[i];
 
-		worldObject.Draw();
+		worldObject.Draw(activeScene);
 	}
 
 	glFlush();

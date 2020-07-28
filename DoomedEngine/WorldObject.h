@@ -3,6 +3,7 @@
 #include "DOOM.h"
 #include "Transformable.h"
 #include "Material.h"
+#include "Scene.h"
 
 //NOTE: change to const & arguments
 
@@ -25,7 +26,7 @@ class WorldObject : public Model, public Transformable {
 public:
 	WorldObject();
 	WorldObject(Model model);
-	virtual void Draw();
+	virtual void Draw(const Scene& scene);
 
 };
 

@@ -10,4 +10,5 @@ public:
 
 	Material(glm::vec4 _ambientProperties, glm::vec4 _diffuseProperties, glm::vec4 _specularProperties, const Shader &_shader);
 	Material();
+	void TintWithColor(glm::vec4 color);
 };

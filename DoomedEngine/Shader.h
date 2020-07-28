@@ -8,7 +8,11 @@ public:
 	GLuint modelViewID;
 	GLuint projectionID;
 	GLuint transformID;
+	GLuint lightPositionID;
+	GLuint ambientProductID;
+	GLuint diffuseProductID;
+	GLuint specularProductID;
 
-	Shader(GLuint _programID, GLuint _modelViewID, GLuint _projectionID, GLuint _transformID);
+	Shader(GLuint _programID);
 	Shader();
 };

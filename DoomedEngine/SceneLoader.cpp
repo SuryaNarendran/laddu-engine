@@ -83,6 +83,10 @@ Scene SceneLoader::LoadNew(const char* filename) {
 					marker = FileHandler::getNextRelevantChar(file); // ':'
 					marker = FileHandler::readHRVector3(file, (worldObjectTemplates[worldObjectTemplate_i]).eulerAngles);
 				}
+				else if (strcmp(stringBuffer, "color") == 0) {
+					marker = FileHandler::getNextRelevantChar(file); // ':'
+					marker = FileHandler::readHRVector3(file, (worldObjectTemplates[worldObjectTemplate_i]).color);
+				}
 				marker = FileHandler::getNextRelevantChar(file); // ',' or '}'
 			}
 			worldObjectTemplate_i++;
@@ -98,7 +102,11 @@ Scene SceneLoader::LoadNew(const char* filename) {
 	newScene.mainCamera.eulerAngles = glm::vec3(0, 0, 0);
 
 	newScene.lightSources = new PointLight();
+	newScene.lightSources[0].diffuse = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
+	newScene.lightSources[0].specular = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
+	newScene.lightSources[0].position = glm::vec4(10.0f, 10.0f, 10.0f, 1.0f);
 	newScene.lightSourceCount = 1;
+	newScene.ambientLight = glm::vec4(0.1f, 0.1f, 0.1f, 1.0f);
 
 	newScene.ambientLight = glm::vec4(0.50, 0.0, 0.0, 1.0);
 
@@ -112,6 +120,7 @@ Scene SceneLoader::LoadNew(const char* filename) {
 		newScene.worldObjects[i].position = glm::vec4(worldObjectTemplates[i].position, 1.0f);
 		newScene.worldObjects[i].scale = glm::vec4(worldObjectTemplates[i].scale, 1.0f);
 		newScene.worldObjects[i].eulerAngles = glm::vec4(worldObjectTemplates[i].eulerAngles*DEG_TO_RAD, 1.0f);
+		newScene.worldObjects[i].material.TintWithColor(glm::vec4(worldObjectTemplates[i].color, 1.0));
 	}
 
 	return newScene;
