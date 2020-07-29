@@ -101,14 +101,12 @@ Scene SceneLoader::LoadNew(const char* filename) {
 	newScene.mainCamera.position = glm::vec4(0, 0, -1, 1);
 	newScene.mainCamera.eulerAngles = glm::vec3(0, 0, 0);
 
-	newScene.lightSources = new PointLight();
-	newScene.lightSources[0].diffuse = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
-	newScene.lightSources[0].specular = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
-	newScene.lightSources[0].position = glm::vec4(10.0f, 10.0f, 10.0f, 1.0f);
-	newScene.lightSourceCount = 1;
-	newScene.ambientLight = glm::vec4(0.1f, 0.1f, 0.1f, 1.0f);
-
-	newScene.ambientLight = glm::vec4(0.50, 0.0, 0.0, 1.0);
+	newScene.lighting.sources = new PointLight();
+	newScene.lighting.sources[0].diffuse = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
+	newScene.lighting.sources[0].specular = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
+	newScene.lighting.sources[0].position = glm::vec4(0.0f, 3.0f, 0.0f, 1.0f);
+	newScene.lighting.sourceCount = 1;
+	newScene.lighting.ambient = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
 
 	newScene.worldObjectCount = worldObjectTemplate_i;
 	newScene.worldObjects = new WorldObject[newScene.worldObjectCount];

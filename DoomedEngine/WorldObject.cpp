@@ -24,15 +24,17 @@ WorldObject::WorldObject() : Transformable() {
 }
 
 
-void WorldObject::Draw(const Scene& scene) {
+void WorldObject::Draw(const LightingEnvironment& lighting) {
 
 	//send uniforms to shader
 	glm::mat4 tMatrix = GetTransformMatrix();
 	glUniformMatrix4fv(material.shader.transformID, 1, GL_FALSE, glm::value_ptr(tMatrix));
 
-	glm::vec4 ambientProduct = scene.ambientLight * material.ambientProperties;
-	glm::vec4 diffuseProduct = scene.lightSources[0].diffuse * material.diffuseProperties;
-	glm::vec4 specularProduct = scene.lightSources[0].specular * material.specularProperties;
+	glm::vec4 ambientProduct = lighting.ambient * material.ambientProperties;
+	glm::vec4 diffuseProduct = lighting.sources[0].diffuse * material.diffuseProperties;
+	glm::vec4 specularProduct = lighting.sources[0].specular * material.specularProperties;
+
+
 
 	glUniform4fv(material.shader.ambientProductID, 1, value_ptr(ambientProduct));
 	glUniform4fv(material.shader.diffuseProductID, 1, value_ptr(diffuseProduct));
@@ -43,13 +45,5 @@ void WorldObject::Draw(const Scene& scene) {
 	glBindVertexArray(0);
 }
 
-void ElemBuffPrimitive3D::Draw(){
-
-	//send transform uniform to shader
-
-	glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, 0);
-}
-
-ElemBuffPrimitive3D::ElemBuffPrimitive3D(Model model) : WorldObject(model) {}
+//ElemBuffPrimitive3D::ElemBuffPrimitive3D(Model model) : WorldObject(model) {}
 

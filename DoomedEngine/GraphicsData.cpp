@@ -121,7 +121,7 @@ void GraphicsData::LoadModels() {
 }
 
 WorldObject GraphicsData::GetDefaultCube() {
-	return ElemBuffPrimitive3D(models[MODEL_CUBE]);
+	return WorldObject(models[MODEL_CUBE]);
 }
 
 Shader GraphicsData::GetShader(int index) {

@@ -16,10 +16,8 @@ uniform vec4 lightPosition;
 void main()
 {
 
-	float theta = 45 * 0.0174533;//degree to radians
+
 	vec4 lightPos = lightPosition; 
-	lightPos.x = cos(theta)*LightPosition.x - sin(theta)*LightPosition.z;
-	lightPos.z = sin(theta)*LightPosition.x + cos(theta)*LightPosition.z;
 
 	vec4 mvPosition = model_view*transform*vPosition;
 	
@@ -27,8 +25,8 @@ void main()
 	fE = (mvPosition).xyz;
 	fL = lightPos.xyz;
 
-	if(LightPosition.w != 0.0){
-		fL = lightPos.xyz - vPosition.xyz;
+	if(lightPosition.w != 0.0){
+		fL -= fE;
 	}
 
 	gl_Position = projection*mvPosition;

@@ -18,3 +18,11 @@ public:
 	PointLight(glm::vec4 _diffuse, glm::vec4 _specular);
 
 };
+
+class LightingEnvironment {
+public:
+
+	PointLight* sources;
+	GLint sourceCount;
+	glm::vec4 ambient;
+};

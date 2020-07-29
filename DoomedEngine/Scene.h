@@ -29,11 +29,8 @@ class Scene{
 	public:
 	
 	WorldObject* worldObjects;
-	PointLight* lightSources;
 	GLint worldObjectCount;
-	GLint lightSourceCount;
-
-	glm::vec4 ambientLight;
+	LightingEnvironment lighting;
 	
 	PerspectiveCamera mainCamera;
 };

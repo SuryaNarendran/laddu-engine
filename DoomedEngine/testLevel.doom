@@ -5,10 +5,10 @@
 
 >"ObjectDeclarations"
 
-"worldObject"{"name":"floor","position":(0,-2,0),"model":"cube","scale":(20,1,20),"eulerAngles":(0,0,0)},
-"worldObject"{"name":"leftWall","position":(-5,3,0),"model":"cube","scale":(20,1,20),"eulerAngles":(0,0,90)},
-"worldObject"{"name":"rightWall","position":(5,3,0),"model":"cube","scale":(20,1,20),"eulerAngles":(0,0,90)},
-"worldObject"{"name":"backWall","position":(0,3,-5),"model":"cube","scale":(20,1,20),"eulerAngles":(90,0,0)},
-"worldObject"{"name":"frontWall","position":(0,3,5),"model":"cube","scale":(20,1,20),"eulerAngles":(90,0,0)}
+"worldObject"{"name":"floor","position":(0,-2,0),"model":"cube","scale":(20,1,20),"eulerAngles":(0,0,0),"color":(1,0.3,0.7)},
+"worldObject"{"name":"leftWall","position":(-5,3,0),"model":"cube","scale":(20,1,20),"eulerAngles":(0,0,90),"color":(1,0.3,0.7)},
+"worldObject"{"name":"rightWall","position":(5,3,0),"model":"cube","scale":(20,1,20),"eulerAngles":(0,0,90),"color":(1,0.3,0.7)},
+"worldObject"{"name":"backWall","position":(0,3,-5),"model":"cube","scale":(20,1,20),"eulerAngles":(90,0,0),"color":(1,0.3,0.7)},
+"worldObject"{"name":"frontWall","position":(0,3,5),"model":"cube","scale":(20,1,20),"eulerAngles":(90,0,0),"color":(1,0.3,0.7)}
 
 >"End"

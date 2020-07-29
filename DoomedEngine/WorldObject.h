@@ -3,7 +3,7 @@
 #include "DOOM.h"
 #include "Transformable.h"
 #include "Material.h"
-#include "Scene.h"
+#include "LightSource.h"
 
 //NOTE: change to const & arguments
 
@@ -26,7 +26,7 @@ class WorldObject : public Model, public Transformable {
 public:
 	WorldObject();
 	WorldObject(Model model);
-	virtual void Draw(const Scene& scene);
+	virtual void Draw(const LightingEnvironment& lighting);
 
 };
 
@@ -40,12 +40,12 @@ public:
 //		void Draw();
 //};
 
-class ElemBuffPrimitive3D : public WorldObject {
+/*class ElemBuffPrimitive3D : public WorldObject {
 
 public:
 	ElemBuffPrimitive3D(Model model);
 	glm::vec4 color;
 
 public:
-	void Draw() override;
-};
+	void Draw(const LightingEnvironment& lighting) override;
+};*/
